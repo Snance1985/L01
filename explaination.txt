@@ -1,0 +1,98 @@
+The package.json file is used by npm to define dependencies and commands that can be used in projects. 
+When we install dependencies into our projects, they will be added to this file so that anyone who wants to run the project can easily install the dependencies using npm install.
+
+__________________________________________________________________________
+VARIABLES
+When defining variables in TypeScript, the syntax will generally look like this:
+
+let varName: Type = initialValue;
+
+__________________________________________________________________________
+BOOLEAN
+This is the most basic of the datatypes which allows us to declare a variable with a true/false value. Here's an example of declaring a variable with a type boolean:
+
+let isRaining: boolean = false;
+let isComplete: boolean = true;
+
+__________________________________________________________________________
+STRING
+A string value in TypeScript is denoted by the use of double quotes (") or single quotes (') around it. To identify a variable as a string, we also attach the type string to the variable declaration.
+
+Let's take a look at an example declaration:
+
+let myName: string = "Hawk";
+
+In TypeScript, we can also declare template strings, which may consist of multiple lines of text and can have embedded expressions of code. Such strings are surrounded by the backtick quote character (`) and the embedded expressions take the form of ${embedded_expr}. Let's take a look at an example to further understand this feature:
+
+let myName: string = "Hawk";
+let color: string = "green";
+
+let statement: string = `Hello, my name is ${myName} and I like the color ${color}.`
+
+console.log(statement)
+
+__________________________________________________________________________
+ARRAYS
+
+In TypeScript, there are two ways of declaring array type variables. The first way is to add the []after the type of the variable, for instance:
+
+let colors: string[] = ['red', 'blue', 'green']
+
+By defining the type of the array as a string, we have made it so that the variable colors can now only accept strings as its content.
+
+The second way of declaring array type variables is to use the generic array type Array<elementType>. Let's create another array of names using this method:
+
+let myFavoriteSuperheroes: Array<string> = ['Batman', 'Iron Man', 'The Flash'];
+
+__________________________________________________________________________
+ENUM
+
+enum is a new addition to TypeScript from JavaScript that allows us to give custom names to a set of numeric values. Here's an example declaration of enum for different roles in a company:
+
+enum Role { Administrator, HR, Developer };
+let newRole: Role = Role.Developer;
+
+Here, the enum contents Administrator, HR, and Developer stand for the values 0, 1, and 2, as enums begin numbering their members from 0.
+
+This can be changed manually by adding custom values at the time of declaration:
+
+enum Role { Administrator = 2, HR = 1, Developer = 3 };
+let newRole: Role = Role.Developer;
+
+__________________________________________________________________________
+ANY
+
+There are instances when coding a new application where we fetch values dynamically from an external data source, say an API or from the user. In such cases, there might be a need to skip the type checking to see what values are being provided before enforcing a type.
+
+The any type in TypeScript allows us to do just that. It will let values pass through the code without any compile-time errors. This allows us to reinitialize the variable declared as the type any to another data type without any type-related errors.
+
+Here is an example of using the any type. While changing the data type of a variable would normally cause compiler errors in TypeScript, this is valid code:
+
+let myCode: any = 456454;
+myCode = "myCode is now a string";
+myCode = true; // myCode now is a boolean
+
+The other use case of the any keyword is in arrays that contain different data types. We noticed earlier that declaring a datatype in an array forces all values within the array to be of the same type. Using the any type allows us to declare and use arrays that contain different datatypes.
+
+For instance, if we ran the following code:
+
+let myRandomList: string = ["music", 8, true];
+console.log(myRandomList[0]);
+
+We get an error saying:
+
+    Type '(string | number | boolean)[]' is not assignable to type 'string'.ts(2322)
+
+But, once we use the any type instead of the string, the code runs without errors and I can see the word music in the console.
+
+let myRandomList: any = ["music", 8, true];
+console.log(myRandomList[0]);
+
+__________________________________________________________________________
+VOID
+
+Another datatype that can be useful, at least in the case of function return types, is the void type. The void type is pretty much the counterpart to the any type, wherein the variable doesn't have a type at all. This is used with functions that do not return a value. Here is an example use case for the void type:
+
+function myConsolePrint(): void {
+    console.log("This function does not have a return type")
+}
